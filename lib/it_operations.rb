@@ -11,7 +11,7 @@ end
 module ItOperations
   extend SingleForwardable
 
-  def_delegators ItOperations::ItOperation, :by_op, :processed, :unprocessed, :unsuccessful, :successful
+  def_delegators ItOperation, :by_op, :processed, :unprocessed, :unsuccessful, :successful
 
   def self.entities_for_operation(operation)
     entities_by_operation = by_op(operation).group(:entity_class).count
