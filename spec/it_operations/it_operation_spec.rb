@@ -10,8 +10,9 @@ RSpec.describe ItOperations::ItOperation do
     end
 
     it 'bang version (!) calls mark_successful and persists' do
-      expect(it_operation).to receive(:mark_successful)
+      allow(it_operation).to receive(:mark_successful)
       it_operation.mark_successful!
+      expect(it_operation).to have_received(:mark_successful)
       expect(it_operation).to be_persisted
     end
 
@@ -34,8 +35,9 @@ RSpec.describe ItOperations::ItOperation do
     end
 
     it 'bang version (!) calls mark_failed and persists' do
-      expect(it_operation).to receive(:mark_failed)
+      allow(it_operation).to receive(:mark_failed)
       it_operation.mark_failed!
+      expect(it_operation).to have_received(:mark_failed)
       expect(it_operation).to be_persisted
     end
 
@@ -52,7 +54,6 @@ RSpec.describe ItOperations::ItOperation do
   end
 
   it '#klass' do
-    class Test; end
     expect(it_operation.klass).to eq(Test)
   end
 
@@ -62,3 +63,5 @@ RSpec.describe ItOperations::ItOperation do
     expect(it_op.entity).to eq(it_operation)
   end
 end
+
+class Test; end

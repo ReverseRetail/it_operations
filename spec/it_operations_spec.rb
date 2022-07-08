@@ -1,12 +1,12 @@
 # frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe ItOperations do
-  it "has a version number" do
+  let(:operation_klass) { ItOperations::ItOperation }
+  it 'has a version number' do
     expect(ItOperations::VERSION).not_to be nil
   end
-
-  let(:operation_klass) { ItOperations::ItOperation }
 
   it '.entities_for_operation' do
     entity = operation_klass.create(entity_id: 1, entity_class: 'Test', operation: 'create entity')

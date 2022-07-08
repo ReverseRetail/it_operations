@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "it_operations/version"
-require "active_support"
+require_relative 'it_operations/version'
+require 'active_support'
 
 ActiveSupport.on_load(:active_record) do
-  require "it_operations/it_operation"
+  require 'it_operations/it_operation'
   include ItOperations
 end
 

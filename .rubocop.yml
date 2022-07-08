@@ -1,10 +1,37 @@
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
+require: rubocop-rspec
 
-Style/StringLiteralsInInterpolation:
+RSpec/BeforeAfterAll:
   Enabled: true
-  EnforcedStyle: double_quotes
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Layout/EndOfLine:
+  Enabled: false
 
 Layout/LineLength:
   Max: 120
+  IgnoredPatterns: ['(\A|\s)#']
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+RSpec/EmptyLineAfterFinalLet:
+  Enabled: false
