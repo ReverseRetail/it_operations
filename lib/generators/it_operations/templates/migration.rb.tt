@@ -1,0 +1,15 @@
+class <%= migration_class_name %> < ActiveRecord::Migration<%= migration_version %>
+  def change
+    create_table :it_operations do |t|
+      t.integer :entity_id, null: false
+      t.string :entity_class, null: false
+      t.string :arguments
+      t.string :operation, index: true
+      t.boolean :processed, null: false, default: false
+      t.boolean :successful, null: false, default: false
+      t.text :result
+
+      t.timestamps null: false
+    end
+  end
+end
