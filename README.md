@@ -1,5 +1,6 @@
+![RSpec Tests][rspec_shield]
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 # ItOperations
-
 This is a feature extracted from Buddy, that was implemented in Content System and makes sense to make a gem out of it, so we can reduce code repetition and use it in different projects.
 
 The idea behind ItOperations (formerly called ArticleItOperation) is to have a way to deal with data-transfer operations for large datasets, where we typically work around a list of entities (such as articles), and have a better overview about how the operation was (if successful; if failed, why?; don't interrupt other entities from dataset getting updated if one fails, etc).

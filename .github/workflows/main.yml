@@ -1,4 +1,4 @@
-name: Ruby
+name: Ruby Style Guide
 
 on: [push,pull_request]
 
