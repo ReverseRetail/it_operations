@@ -9,7 +9,7 @@ The idea behind ItOperations (formerly called ArticleItOperation) is to have a w
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'it_operations'
+gem 'it_operations', github: "reverseretail/it_operations", tag: 'v0.1.0'
 ```
 
 And then execute:
