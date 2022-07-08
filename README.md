@@ -1,4 +1,4 @@
-![RSpec Tests][rspec_shield]
+[![RSpec Tests][rspec_shield]]
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 # ItOperations
 This is a feature extracted from Buddy, that was implemented in Content System and makes sense to make a gem out of it, so we can reduce code repetition and use it in different projects.
