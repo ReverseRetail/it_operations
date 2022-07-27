@@ -11,6 +11,8 @@ end
 module ItOperations
   extend SingleForwardable
 
+  BATCH_SIZE = ENV.fetch('IT_OPERATIONS_BATCH_SIZE', 1000).to_i
+
   def_delegators ItOperation, :by_op, :processed, :unprocessed, :unsuccessful, :successful
 
   def self.entities_for_operation(operation)
@@ -25,7 +27,7 @@ module ItOperations
 
   # rubocop: disable Metrics/MethodLength
   def self.create_from_entity_ids(entity_ids, entity_class, operation)
-    date = Time.zone.now
+    date = Time.now
     base = {
       entity_class: entity_class,
       operation: operation,
@@ -36,9 +38,11 @@ module ItOperations
       created_at: date,
       updated_at: date
     }
-    ItOperations::ItOperation.insert_all(entity_ids.map do |entity_id|
-      { entity_id: entity_id }.merge(base)
-    end)
+    entity_ids.in_groups_of(BATCH_SIZE, false) do |group|
+      ItOperations::ItOperation.insert_all(group.map do |entity_id|
+        { entity_id: entity_id }.merge(base)
+      end)
+    end
   end
   # rubocop: enable Metrics/MethodLength
 

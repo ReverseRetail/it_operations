@@ -15,6 +15,15 @@ RSpec.describe ItOperations do
     expect(described_class.entities_for_operation(it_operation.operation)).to eq([entity])
   end
 
+  it '.create_from_entity_ids' do
+    stub_const("#{described_class}::BATCH_SIZE", 1)
+    ids = [1, 2]
+    allow(ItOperations::ItOperation).to receive(:insert_all).and_call_original
+    described_class.create_from_entity_ids(ids, 'Test', 'create entity')
+    expect(operation_klass.count).to eq(ids.count)
+    expect(ItOperations::ItOperation).to have_received(:insert_all).twice
+  end
+
   describe '.run' do
     let(:it_operation) { operation_klass.new(entity_class: operation_klass.name, operation: 'test') }
 
