@@ -28,6 +28,14 @@ module ItOperations
     scope :successful,   -> { where(successful: true) }
     scope :by_op, ->(operation) { where(operation: operation) }
 
+    def processed?
+      processed
+    end
+
+    def successful?
+      successful
+    end
+
     def klass
       entity_class.constantize
     end
