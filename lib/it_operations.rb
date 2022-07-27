@@ -65,7 +65,7 @@ module ItOperations
   #
   def self.run(operation_name, succeed_msg = 'done')
     operations = by_op(operation_name).unprocessed
-    operations.find_each do |operation|
+    operations.in_batches(of: BATCH_SIZE).each_record do |operation|
       yield operation.entity, operation.arguments
       operation.mark_successful!(succeed_msg)
     rescue StandardError => e

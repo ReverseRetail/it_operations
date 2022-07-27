@@ -33,6 +33,15 @@ RSpec.describe ItOperations do
       it_operation.save
     end
 
+    it 'runs in batches' do
+      stub_const("#{described_class}::BATCH_SIZE", 1)
+      described_class.create_from_entity_ids([1, 2], operation_klass.name, 'test operation')
+      described_class.run('test operation') { true }
+
+      expect(operation_klass.where(operation: 'test operation')).to all(be_processed)
+      expect(operation_klass.where(operation: 'test operation')).to all(be_successful)
+    end
+
     context 'when the operation succeeds' do
       let(:run_operation) do
         described_class.run(it_operation.operation, 'succeed!') { true }
